@@ -1,0 +1,71 @@
+
+1. Login Page:
+
+Allows users to login using existing credentials.
+Includes fields for username and password.
+May offer options for remembering login credentials or password reset.
+2. Register Page:
+
+Enables new users to register for the system.
+Requires information like name, email address, and password.
+May implement validation and confirmation mechanisms.
+3. Dashboard Page:
+
+Provides a central overview of energy consumption and system status.
+May display key metrics like daily/monthly energy usage, cost analysis, and device breakdown.
+Offers links to other pages for detailed information and control.
+4. Service Locations Page:
+
+Lists all service locations associated with the user.
+Allows for adding new service locations with details like address, square footage, and number of occupants.
+Enables editing and removing existing service locations.
+
+5. Smart Devices Page:
+
+Displays a list of smart devices connected to each service location.
+Provides options for adding new devices by selecting device type and model from pre-defined lists.
+Offers functionalities to edit and remove existing devices.
+
+6. Energy Consumption Visualization Page:
+
+Features four to five different charts and graphs for analyzing energy usage patterns.
+May include visualizations like:
+Daily energy consumption over a selected time period.
+Energy consumption per device for a specific timeframe.
+Comparison of energy consumption with similar locations.
+Breakdown of energy usage during peak and non-peak hours.
+Cost analysis of energy usage.
+7. User Profile Page:
+
+Allows users to manage their account information.
+May allow updating contact details, password changes, and managing notification preferences.
+8. About Page:
+
+Provides information about the SHEMS project, developers, and contact details.
+
+
+
+login and registration pages is doen , now which page to complete
+Answer
+Now that you have completed the login and registration pages, you can move on to creating the other pages for your Smart Home Energy Management System (SHEMS) project. Here are the pages you should work on next:
+
+Dashboard or Home Page: After a user logs in, they should be directed to a dashboard or home page. 
+This page can display a welcome message, a summary of the user's energy consumption, and links to other pages,
+ such as service locations, devices, and energy consumption views.
+
+Service Locations Page: Create a page where users can view, add, and remove their service locations. 
+This page should display a list of the user's service locations (retrieved from the ServiceLocation table),
+ and it should include a form where users can enter the details of a new service location to add to the ServiceLocation table.
+
+Devices Page: Create a page where users can view, add, and remove their devices.
+ This page should display a list of the user's devices (retrieved from the Device table),
+ and it should include a form where users can select a device type and model (from the DeviceModel table)
+ and a service location (from the ServiceLocation table) to add a new device to the Device table.
+
+Energy Consumption Views: Create several pages (or perhaps sections of a single page) that display 
+different views of the user's energy consumption. These views could be implemented as charts or tables,
+ and the data for these views should be retrieved from the Event and EnergyPrice tables. 
+You might want to use a charting library like Chart.js or D3.js to create these views.
+
+Remember to create routes in your app.js file for each of these pages and connect them to your PostgreSQL database to retrieve, display, and update data as necessary.
+

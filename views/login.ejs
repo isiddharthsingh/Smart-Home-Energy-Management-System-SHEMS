@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/loginstyles.css">
+  <style>
+    html {
+      height: 100%;
+      background-image: radial-gradient(circle, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+      background-size: cover;
+      background-position: center;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 50px;
+      text-align: center;
+      box-sizing: border-box;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+    }
+  
+    h1 {
+      color: #333;
+    }
+  
+    form {
+      width: 300px;
+    }
+  
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 20px;
+    }
+  
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+  
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #333;
+      color: white;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  
+    input[type="submit"]:hover {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1>Login</h1>
+  <form action="/login" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <input type="submit" value="Login">
+  </form>
+  <script src="/js/scripts.js"></script>
+</body>
+</html>

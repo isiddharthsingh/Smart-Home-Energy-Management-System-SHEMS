@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy Consumptions</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/dashboard">Home</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="/service-locations">Service Locations</a></li>
+          <li class="nav-item"><a class="nav-link" href="/devices">Devices</a></li>
+          <li class="nav-item"><a class="nav-link" href="/energy-consumption">Energy Consumption</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <h1>Your Energy Consumptions</h1>
+    <br>
+    <div class="row">
+      <!-- <div class="col-lg-6">
+        <h2>Daily Energy Consumption</h2>
+        <canvas id="dailyEnergyConsumptionChart"></canvas>
+      </div> -->
+      <div class="col-lg-6">
+        <h2>Energy Consumption per Device</h2>
+        <canvas id="energyConsumptionPerDeviceChart"></canvas>
+      </div>
+      <!-- <div class="col-lg-6">
+        <h2>Comparison with Similar Locations</h2>
+        <canvas id="comparisonWithSimilarLocationsChart"></canvas>
+      </div> -->
+      <div class="col-lg-6">
+        <h2>Peak vs Non-Peak Hours</h2>
+        <canvas id="peakNonPeakHoursChart"></canvas>
+      </div>
+      <div class="col-lg-6">
+        <h2>Cost Analysis</h2>
+        <canvas id="costAnalysisChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <script src="public/js/energy-consumption.js"></script>
+  <script src="/js/energy-consumption.js"></script> <!-- Include a JavaScript file where you create the charts using Chart.js -->
+
+  <script>
+    const energyData = <%- JSON.stringify(energyData) %>;
+    const energyPrices = <%- JSON.stringify(energyPrices) %>;
+  </script>
+  <script>
+    const ctx1 = document.getElementById('dailyEnergyConsumptionChart').getContext('2d');
+    const dailyEnergyConsumptionChart = new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: energyData.map(data => data.timestamp), // Use the timestamps from your energy data as the x-axis labels
+        datasets: [{
+          label: 'Daily Energy Consumption',
+          data: energyData.map(data => data.value), // Use the energy consumption values from your energy data as the y-axis data
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  
+  <script>
+    const ctx2 = document.getElementById('energyConsumptionPerDeviceChart').getContext('2d');
+    const energyConsumptionPerDeviceChart = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: <%= JSON.stringify(energyDataPerDevice.map(row => row.deviceid)) %>, // Use the device IDs as labels
+        datasets: [{
+          label: 'Energy Consumption per Device',
+          data: <%= JSON.stringify(energyDataPerDevice.map(row => row.totalenergy)) %>, // Use the total energy consumption as data
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    const comparisonWithSimilarLocations = <%- JSON.stringify(comparisonWithSimilarLocations) %>;
+    const ctx3 = document.getElementById('comparisonWithSimilarLocationsChart').getContext('2d');
+    const comparisonWithSimilarLocationsChart = new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: comparisonWithSimilarLocations.map(data => data.timestamp), // Use the timestamps from your data as the x-axis labels
+        datasets: [{
+          label: 'Comparison with Similar Locations',
+          data: comparisonWithSimilarLocations.map(data => data.averageenergy), // Use the average energy consumption values from your data as the y-axis data
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
+          borderColor: 'rgba(153, 102, 255, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    const costAnalysis = <%- JSON.stringify(costAnalysis) %>;
+    const ctx4 = document.getElementById('costAnalysisChart').getContext('2d');
+    const costAnalysisChart = new Chart(ctx4, {
+      type: 'line',
+      data: {
+        labels: costAnalysis.map(data => data.timestamp), // Use the timestamps from your data as the x-axis labels
+        datasets: [{
+          label: 'Cost Analysis',
+          data: costAnalysis.map(data => data.value * data.price), // Multiply the energy consumption by the price to get the cost
+          backgroundColor: 'rgba(255, 159, 64, 0.2)',
+          borderColor: 'rgba(255, 159, 64, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    const peakNonPeakHours = <%- JSON.stringify(peakNonPeakHours) %>;
+    const ctx5 = document.getElementById('peakNonPeakHoursChart').getContext('2d');
+    const peakNonPeakHoursChart = new Chart(ctx5, {
+      type: 'line',
+      data: {
+        labels: peakNonPeakHours.map(data => data.timestamp), // Use the timestamps from your data as the x-axis labels
+        datasets: [{
+          label: 'Peak and Non-Peak Hours Energy Consumption',
+          data: peakNonPeakHours.map(data => data.value), // Use the energy consumption values from your data as the y-axis data
+          backgroundColor: 'rgba(255, 159, 64, 0.2)',
+          borderColor: 'rgba(255, 159, 64, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+</script>
+
+</body>
+</html>

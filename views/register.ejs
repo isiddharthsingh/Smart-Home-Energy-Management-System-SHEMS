@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Register</title>
+  <link rel="stylesheet" href="/css/registerstyles.css">
+  <style>
+    html {
+      
+      background-image: linear-gradient(to right bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+      background-size: cover;
+      background-position: center;
+    }
+    
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 50px;
+      text-align: center;
+      box-sizing: border-box;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      /* margin-top: 100px; */
+    }
+    form {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+    input[type="text"], input[type="password"] {
+      width: calc(100% - 20px); /* Subtract the padding from the width */
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Place this div above the form -->
+
+  <!-- The rest of your HTML form goes here -->
+  <h1>Register</h1>
+
+  <form action="/register" method="POST">
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname" name="firstname" required>
+    <br>
+    <label for="lastname">Last Name:</label>
+    <input type="text" id="lastname" name="lastname" required>
+    <br>
+    <label for="streetaddress">Street Address:</label>
+    <input type="text" id="streetaddress" name="streetaddress" required>
+    <br>
+    <label for="aptnumber">Apartment Number:</label>
+    <input type="text" id="aptnumber" name="aptnumber">
+    <br>
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required>
+    <br>
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" required>
+    <br>
+    <label for="zipcode">Zip Code:</label>
+    <input type="text" id="zipcode" name="zipcode" required>
+    <br>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <input type="submit" value="Register">
+  </form>
+  <script src="/js/scripts.js"></script>
+  <script>
+    // Assuming you're sending a variable named 'errorMessage' from the server
+    <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+      document.getElementById('error-message').textContent = '<%= errorMessage %>';
+      document.getElementById('error-message').style.display = 'block';
+    <% } %>
+  </script>
+  
+</body>
+</html>

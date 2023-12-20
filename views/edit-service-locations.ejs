@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Service Location</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 0;
+      margin: 0;
+    }
+    
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/dashboard">Home</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="/service-locations">Service Locations</a></li>
+          <li class="nav-item"><a class="nav-link" href="/devices">Devices</a></li>
+          <li class="nav-item"><a class="nav-link" href="/energy-consumption">Energy Consumption</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Edit Service Location</h1>
+    <form action="/service-locations/<%= location.locationid %>/edit" method="POST">
+      <div class="form-group">
+        <label for="streetaddress">Street Address:</label>
+        <input type="text" class="form-control" id="streetaddress" name="streetaddress" value="<%= location.streetaddress %>" required>
+      </div>
+      <div class="form-group">
+        <label for="aptnumber">Apartment Number:</label>
+        <input type="text" class="form-control" id="aptnumber" name="aptnumber" value="<%= location.aptnumber %>">
+      </div>
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" class="form-control" id="city" name="city" value="<%= location.city %>" required>
+      </div>
+      <div class="form-group">
+        <label for="state">State:</label>
+        <input type="text" class="form-control" id="state" name="state" value="<%= location.state %>" required>
+      </div>
+      <div class="form-group">
+        <label for="zipcode">Zip Code:</label>
+        <input type="text" class="form-control" id="zipcode" name="zipcode" value="<%= location.zipcode %>" required>
+      </div>
+      <div class="form-group">
+        <label for="unitnumber">Unit Number:</label>
+        <input type="number" class="form-control" id="unitnumber" name="unitnumber" value="<%= location.unitnumber %>">
+      </div>
+      <div class="form-group">
+        <label for="startdate">Start Date:</label>
+        <input type="date" class="form-control" id="startdate" name="startdate" value="<%= location.startdate %>">
+      </div>
+      <div class="form-group">
+        <label for="squarefootage">Square Footage:</label>
+        <input type="number" class="form-control" id="squarefootage" name="squarefootage" value="<%= location.squarefootage %>">
+      </div>
+      <div class="form-group">
+        <label for="bedrooms">Bedrooms:</label>
+        <input type="number" class="form-control" id="bedrooms" name="bedrooms" value="<%= location.bedrooms %>">
+      </div>
+      <div class="form-group">
+        <label for="occupants">Occupants:</label>
+        <input type="number" class="form-control" id="occupants" name="occupants" value="<%= location.occupants %>">
+      </div>
+      <button type="submit" class="btn btn-primary">Update Service Location</button>
+    </form>
+  </div>
+  <script src="/js/scripts.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

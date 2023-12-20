@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Locations</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/dashboard">Home</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="/service-locations">Service Locations</a></li>
+          <li class="nav-item"><a class="nav-link" href="/devices">Devices</a></li>
+          <li class="nav-item"><a class="nav-link" href="/energy-consumption">Energy Consumption</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <h1>Your Service Locations</h1>
+    <ul class="list-group">
+      <% serviceLocations.forEach(location => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= location.streetaddress %>, <%= location.city %>, <%= location.state %> <%= location.zipcode %>
+          <div>
+            <form action="/service-locations/<%= location.locationid %>/delete" method="POST" style="display: inline;">
+              <button type="submit" class="btn btn-danger">Remove</button>
+            </form>
+            <form action="/service-locations/<%= location.locationid %>/edit" method="GET" style="display: inline;">
+              <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+  <div class="container mt-5">
+    <h2>Add a New Service Location</h2>
+    <form action="/service-locations" method="POST" class="needs-validation" novalidate>
+      <div class="form-group">
+        <label for="streetaddress">Street Address:</label>
+        <input type="text" class="form-control" id="streetaddress" name="streetaddress" required>
+      </div>
+      <div class="form-group">
+        <label for="aptnumber">Apartment Number:</label>
+        <input type="text" class="form-control" id="aptnumber" name="aptnumber">
+      </div>
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" class="form-control" id="city" name="city" required>
+      </div>
+      <div class="form-group">
+        <label for="state">State:</label>
+        <input type="text" class="form-control" id="state" name="state" required>
+      </div>
+      <div class="form-group">
+        <label for="zipcode">Zip Code:</label>
+        <input type="text" class="form-control" id="zipcode" name="zipcode" required>
+      </div>
+      <div class="form-group">
+        <label for="unitnumber">Unit Number:</label>
+        <input type="number" class="form-control" id="unitnumber" name="unitnumber">
+      </div>
+      <div class="form-group">
+        <label for="startdate">Start Date:</label>
+        <input type="date" class="form-control" id="startdate" name="startdate">
+      </div>
+      <div class="form-group">
+        <label for="squarefootage">Square Footage:</label>
+        <input type="number" class="form-control" id="squarefootage" name="squarefootage">
+      </div>
+      <div class="form-group">
+        <label for="bedrooms">Bedrooms:</label>
+        <input type="number" class="form-control" id="bedrooms" name="bedrooms">
+      </div>
+      <div class="form-group">
+        <label for="occupants">Occupants:</label>
+        <input type="number" class="form-control" id="occupants" name="occupants">
+      </div>
+      <button type="submit" class="btn btn-primary">Add Service Location</button>
+    </form>
+  </div>
+  <script src="/js/scripts.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

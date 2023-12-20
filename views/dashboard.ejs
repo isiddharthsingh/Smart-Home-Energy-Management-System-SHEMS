@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/dashboardstyles.css">
+  <style>
+        html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        flex: 1 0 auto;
+    }
+
+    .footer {
+        flex-shrink: 0;
+    }
+
+  </style>
+
+</head>
+<body>
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/dashboard">Home</a>
+      <div class="collapse navbar-collapse" id="navbarNav"> 
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="/service-locations">Service Locations</a></li>
+          <li class="nav-item"><a class="nav-link" href="/devices">Devices</a></li>
+          <li class="nav-item"><a class="nav-link" href="/energy-consumption">Energy Consumption</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h1 class="text-center mt-4">Welcome to the Dashboard, <%= username %></h1>
+    <h2 class="text-center mt-3">Your Total Energy Consumption: <%= energyDataPerDevice.reduce((total, data) => total + data.totalenergy, 0) %> kWh</h2>
+
+  </div>
+
+  <footer class="footer mt-auto py-3 bg-dark text-white">
+    <div class="container text-center">
+      <span>Made by Siddharth Singh (sms10221) and Soham Moghe (sm11882)</span>
+    </div>
+  </footer>
+  <script src="/js/scripts.js"></script>
+</body>
+</html>

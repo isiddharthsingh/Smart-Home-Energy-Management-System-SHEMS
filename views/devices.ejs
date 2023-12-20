@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devices</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/dashboard">Home</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="/service-locations">Service Locations</a></li>
+          <li class="nav-item"><a class="nav-link" href="/devices">Devices</a></li>
+          <li class="nav-item"><a class="nav-link" href="/energy-consumption">Energy Consumption</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <h1>Your Devices</h1>
+    <ul class="list-group">
+      <% devices.forEach(device => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= device.devicetype %> - <%= device.manufacturer %> (Model: <%= device.modelnumber %>) at <%= device.streetaddress %>, <%= device.city %>, <%= device.state %> <%= device.zipcode %>
+          <form action="/devices/<%= device.deviceid %>/delete" method="POST">
+            <button type="submit" class="btn btn-danger">Remove</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+  <div class="container mt-5">
+    <h2>Add a New Device</h2>
+    <form action="/devices" method="POST" class="mb-5">
+      <div class="form-group">
+        <label for="modelnumber">Device Model:</label>
+        <select id="modelnumber" name="modelnumber" class="form-control" required>
+          <% deviceModels.forEach(model => { %>
+            <option value="<%= model.modelnumber %>"><%= model.devicetype %> - <%= model.manufacturer %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="locationid">Service Location:</label>
+        <select id="locationid" name="locationid" class="form-control" required>
+          <% serviceLocations.forEach(location => { %>
+            <option value="<%= location.locationid %>"><%= location.streetaddress %>, <%= location.city %>, <%= location.state %> <%= location.zipcode %></option>
+          <% }) %>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Device</button>
+    </form>
+    <h1>Device Management</h1>
+    <h2>Add New Device Model</h2>
+    <form action="/device-models" method="POST">
+      <div class="form-group">
+        <label for="modelNumber">Model Number:</label>
+        <input type="text" id="modelNumber" name="modelNumber" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="deviceType">Device Type:</label>
+        <input type="text" id="deviceType" name="deviceType" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="manufacturer">Manufacturer:</label>
+        <input type="text" id="manufacturer" name="manufacturer" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add New Device Model</button>
+    </form>
+  </div>
+  <script src="/js/scripts.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
