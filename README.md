@@ -44,7 +44,7 @@ Contributions to this project are welcome. Please fork the repository and submit
 
 ## License
 
-[Specify the license or state that it's unlicensed]
+NA
 
 ## Contact
 
